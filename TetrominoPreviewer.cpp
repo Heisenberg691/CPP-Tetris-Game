@@ -6,31 +6,28 @@ TetrominoPreviewer::TetrominoPreviewer(GameInstance& gameInstance): m_gameInstan
 	sf::Texture texture;
 	m_currentTetromino = TetrominoShapes::SHAPE_O;
 
+	auto ConfigurateElement= [](Entity& frame,sf::Color color, sf::Texture texture, int32_t rectSize, sf::Vector2f coords) {
+		frame.Shape()->setColor(color);
+		frame.Shape()->setTexture(texture);
+		frame.Shape()->setTextureRect({ rectSize, 0, rectSize, rectSize });
+		frame.Shape()->setPosition(coords);
+		frame.Shape()->setOrigin((float)rectSize / 2, (float)rectSize / 2);
+	};
+
+
 	m_frame1 = new Entity();
-	m_frame1->Shape()->setColor(sf::Color::White);
-	m_frame1->Shape()->setTexture(texture);
-	m_frame1->Shape()->setTextureRect({ m_size, 0, m_size, m_size });
-	m_frame1->Shape()->setPosition(m_coords);
-	m_frame1->Shape()->setOrigin(m_size /2, m_size /2);
-
-	int32_t frame2Size = m_size - 20;
-
 	m_frame2 = new Entity();
-	m_frame2->Shape()->setColor(sf::Color::Black);
-	m_frame2->Shape()->setTexture(texture);
-	m_frame2->Shape()->setTextureRect({ frame2Size, 0, frame2Size,frame2Size });
-	m_frame2->Shape()->setPosition(m_coords);
-	m_frame2->Shape()->setOrigin(frame2Size / 2, frame2Size / 2);
-	m_tetrominoBlocks.resize(4);
+	int32_t frame2Size = m_size - 20;
+	ConfigurateElement(*m_frame1, sf::Color::White, texture, m_size, m_coords);
+	ConfigurateElement(*m_frame2, sf::Color::Black, texture, frame2Size, m_coords);
 
+	m_tetrominoBlocks.resize(4);
 	int  blockSize = m_size / 7;
+
 	for (uint32_t i = 0; i < 4; i++)
 	{
-		m_tetrominoBlocks[i] = new Block(m_gameInstance);
-		m_tetrominoBlocks[i]->Shape()->setOrigin(blockSize / 2, blockSize / 2);
-		m_tetrominoBlocks[i]->Shape()->setPosition(m_coords);
-		m_tetrominoBlocks[i]->Shape()->setTextureRect({ blockSize,0,blockSize ,blockSize });
-		m_tetrominoBlocks[i]->Shape()->setColor(sf::Color::Cyan);
+		m_tetrominoBlocks[i] = new Block();
+		ConfigurateElement(*m_tetrominoBlocks[i], sf::Color::Cyan, texture, blockSize, m_coords);
 	}
 
 }

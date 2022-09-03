@@ -22,6 +22,7 @@ void GameInstance::Init()
     m_entityRenderer = new EntityRenderer(m_screen); 
     LoadResources();
     m_grid = new Grid(*this, { GRID_SIZE_X,GRID_SIZE_Y }, BLOCK_SIZE, BLOCK_PADDING, true);
+    m_score = new Score();
     m_tetrominoPreviewer.SetDisplay(true);
     m_tetrominoPreviewer.DisplayTetromino(GetNextTetrominoShape());
     SpawnTetromino(GetNextTetrominoShape());
@@ -94,7 +95,7 @@ void GameInstance::Reset()
     }
     m_grid->Clear();
     m_scoreboard.Reset();
-    m_gameState.Reset();
+    m_score = new Score();
     SpawnTetromino(GetNextTetrominoShape());
     SetNextTetromino(GetRandomTetrominoShape());
     m_tetrominoController.SetTickEnabled(true);
@@ -104,6 +105,11 @@ void GameInstance::Reset()
 GameState& GameInstance::GetGameState()
 {
     return m_gameState;
+}
+
+Score& GameInstance::GetScore()
+{
+    return *m_score;
 }
 
 TetrominoPreviewer& GameInstance::GetTetrominoPreviewer()

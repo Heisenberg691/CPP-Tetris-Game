@@ -2,22 +2,11 @@
 #pragma once
 #include "Entity.h"
 
-class GameInstance;
-
-enum class BlockColor
-{
-	DarkBlue,
-	Purple,
-	Red,
-	Green,
-	Yellow,
-	Blue,
-	Orange
-};
 
 class Block: public Entity {
 public:
-	Block(GameInstance& gameInstance);
+	Block();
+	Block(uint32_t blockSize);
 	~Block();
 
 	sf::Sprite* Shape();
@@ -27,7 +16,6 @@ public:
 	void SetDefaultColor();
 private:
 	sf::Sprite* m_shape;
-	GameInstance& m_gameInstance;
 	bool m_isOccupied;
 
 };

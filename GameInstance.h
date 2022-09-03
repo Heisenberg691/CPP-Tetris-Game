@@ -11,6 +11,7 @@
 #include "Block.h"
 #include "TetrominoPreviewer.h"
 #include "Scoreboard.h"
+#include "Score.h"
 
 class GameInstance {
 
@@ -30,6 +31,7 @@ public:
 	EntityRenderer* GetEntityRenderer();
 	void Reset();
 	GameState& GetGameState();
+	Score& GetScore();
 	TetrominoPreviewer& GetTetrominoPreviewer();
 	sf::RenderWindow& GetScreen();
 	ScoreBoard& GetScoreboard();
@@ -44,6 +46,7 @@ private:
 	TetrominoShapes m_nextTetrominoShape;
 	TetrominoPreviewer m_tetrominoPreviewer = TetrominoPreviewer(*this);
 	ScoreBoard m_scoreboard = ScoreBoard(*this);
+	Score* m_score;
 	void GameLoop();
 	void UpdateRenderScreen();
 	void Update();

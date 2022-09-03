@@ -11,7 +11,7 @@ Grid::Grid(GameInstance& gameInstance,sf::Vector2i gridSize,uint32_t blockSize, 
 
     for (uint32_t i = 0; i < m_gridSize.x; i++) {
         m_gridEntities[i].resize(m_gridSize.y + 1);
-        m_gridEntities[i][0] = new Block(m_gameInstance);
+        m_gridEntities[i][0] = new Block(m_gridSize.blockSize);
         m_gridEntities[i][0]->Shape()->setPosition(xBlockLastCoords.x, xBlockLastCoords.y);
 
         sf::Vector2i yBlockLastCoords = xBlockLastCoords;
@@ -19,7 +19,7 @@ Grid::Grid(GameInstance& gameInstance,sf::Vector2i gridSize,uint32_t blockSize, 
         for (uint32_t j = 0; j < m_gridSize.y; j++) {
             yBlockLastCoords += sf::Vector2i(0.0, m_gridSize.blockSize + m_gridSize.blockPadding);
 
-            m_gridEntities[i][j + 1] = new Block(m_gameInstance);
+            m_gridEntities[i][j + 1] = new Block(m_gridSize.blockSize);
             m_gridEntities[i][j + 1]->Shape()->setPosition(yBlockLastCoords.x, yBlockLastCoords.y);
 
         }
@@ -190,13 +190,13 @@ bool Grid::CanSpawnTetrominoAtCoords(sf::Vector2i coords, TetrominoShapes shape)
 
 void Grid::OnClearedHorizontalLine()
 {
-    uint32_t lines = m_gameInstance.GetGameState().GetLines();
+    uint32_t lines = m_gameInstance.GetScore().GetLines();
     lines++;
-    m_gameInstance.GetGameState().SetLines(lines);
+    m_gameInstance.GetScore().SetLines(lines);
     m_gameInstance.GetScoreboard().SetLines(lines);
     uint32_t xSpeed = (lines / 5);
     if (xSpeed > 1) {
-        m_gameInstance.GetGameState().SetSpeedMultiplier(xSpeed);
+        m_gameInstance.GetScore().SetSpeedMultiplier(xSpeed);
         m_gameInstance.GetScoreboard().SetSpeedMult(xSpeed);
     }
 }

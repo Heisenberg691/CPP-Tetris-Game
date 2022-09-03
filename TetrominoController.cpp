@@ -31,7 +31,7 @@ void TetrominoController::Tick()
     if (m_ControlledTetromino == nullptr || !m_isTickEnabled) {
         return;
     }
-    float moveDownUpdateInterval = (1000.0 / m_gameInstance.GetGameState().GetSpeedMultiplier());
+    float moveDownUpdateInterval = (1000.0 / m_gameInstance.GetScore().GetSpeedMultiplier());
 
     if (moveDownUpdateInterval > 100.0) {
         bool moveFast = (sf::Keyboard::isKeyPressed(sf::Keyboard::Down));

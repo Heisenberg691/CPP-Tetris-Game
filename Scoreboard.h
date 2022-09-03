@@ -14,8 +14,8 @@ public:
 	void SetSpeedMult(uint32_t speedMult);
 	void Reset();
 private:
-	sf::Text m_linesText;
-	sf::Text m_speedMultText;
+	sf::Text* m_linesText;
+	sf::Text* m_speedMultText;
 	sf::Font m_font;
 	GameInstance& m_gameInstance;
 

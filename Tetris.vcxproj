@@ -148,6 +148,7 @@
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Score.cpp" />
     <ClCompile Include="Scoreboard.cpp" />
     <ClCompile Include="Tetromino.cpp" />
     <ClCompile Include="TetrominoController.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="Score.h" />
     <ClInclude Include="Scoreboard.h" />
     <ClInclude Include="Tetromino.h" />
     <ClInclude Include="TetrominoController.h" />
